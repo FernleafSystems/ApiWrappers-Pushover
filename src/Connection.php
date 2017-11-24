@@ -31,4 +31,19 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 		$sValue = empty( $sValue ) ? self::Url_Base : $sValue;
 		return rtrim( $sValue, '/' );
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getUserKey() {
+		return $this->getStringParam( 'user_key' );
+	}
+
+	/**
+	 * @param string $sKey
+	 * @return $this
+	 */
+	public function setUserKey( $sKey ) {
+		return $this->setParam( 'user_key', $sKey );
+	}
 }
