@@ -53,6 +53,24 @@ class Api extends BaseApi {
 	}
 
 	/**
+	 * @throws \Exception
+	 */
+	protected function preSendVerification() {
+		parent::preSendVerification();
+		if ( strlen( $this->getUrlEndpoint() ) == 0 ) {
+			throw new \Exception( 'Request Endpoint has not been provided' );
+		}
+		/** @var Connection $oConn */
+		$oConn = $this->getConnection();
+		if ( !$oConn->hasApiKey() ) {
+			throw new \Exception( 'API Key has not been provided in the Connection' );
+		}
+		if ( strlen( $this->getUserKey() ) == 0 ) {
+			throw new \Exception( 'User/Group Key has not been provided' );
+		}
+	}
+
+	/**
 	 * @param string $sValue
 	 * @return $this
 	 */

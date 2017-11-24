@@ -19,6 +19,14 @@ class Push extends Api {
 	}
 
 	/**
+	 * @param bool $bIsHtml
+	 * @return $this
+	 */
+	public function setIsHtml( $bIsHtml = false ) {
+		return $bIsHtml ? $this->setRequestDataItem( 'html', 1 ) : $this->removeRequestDataItem( 'html' );
+	}
+
+	/**
 	 * @param string $sValue
 	 * @return $this
 	 */
@@ -74,14 +82,6 @@ class Push extends Api {
 	 */
 	public function setTitle( $sValue ) {
 		return $this->setRequestDataItem( 'title', $sValue );
-	}
-
-	/**
-	 * @param bool $bIsHtml
-	 * @return $this
-	 */
-	public function setIsHtml( $bIsHtml = false ) {
-		return $bIsHtml ? $this->setRequestDataItem( 'html', 1 ) : $this->removeRequestDataItem( 'html' );
 	}
 
 	/**
