@@ -14,9 +14,8 @@ class Verify extends Api {
 	 * @return bool
 	 */
 	public function verify() {
-		$aResponse = $this->send()
-						  ->getDecodedResponseBody();
-		return isset( $aResponse[ 'status' ] ) && $aResponse[ 'status' ] == 1;
+		return $this->send()
+					->isLastRequestSuccess();
 	}
 
 	/**

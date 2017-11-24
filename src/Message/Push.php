@@ -14,9 +14,8 @@ class Push extends Api {
 	 * @return bool
 	 */
 	public function push() {
-		$aResponse = $this->send()
-						  ->getDecodedResponseBody();
-		return isset( $aResponse[ 'status' ] ) && $aResponse[ 'status' ] == 1;
+		return $this->send()
+					->isLastRequestSuccess();
 	}
 
 	/**
