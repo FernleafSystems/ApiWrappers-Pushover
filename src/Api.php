@@ -7,28 +7,19 @@ use FernleafSystems\ApiWrappers\Base\BaseApi;
 /**
  * Class Api
  * @package FernleafSystems\ApiWrappers\FreeAgent
+ * @property string $user_key - override connection
  */
 class Api extends BaseApi {
 
-	const REQUEST_METHOD = 'post';
-
 	/**
-	 * @return string
-	 */
-	protected function getBaseUrl() {
-		/** @var Connection $oConn */
-		$oConn = $this->getConnection();
-		return sprintf( '%s/%s', $oConn->getBaseUrl(), $oConn->getApiVersion() ).'/';
-	}
-
-	/**
+	 * Allows for override of the Connection config for user key
 	 * @return string
 	 */
 	public function getUserKey() {
 		/** @var Connection $oConn */
 		$oConn = $this->getConnection();
 		$sKey = $this->getStringParam( 'user_key' );
-		return empty( $sKey ) ? $oConn->getUserKey() : $sKey;
+		return empty( $sKey ) ? $oConn->user_key : $sKey;
 	}
 
 	/**
@@ -47,7 +38,7 @@ class Api extends BaseApi {
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {
-		$this->setRequestDataItem( 'token', $this->getConnection()->getApiKey() )
+		$this->setRequestDataItem( 'token', $this->getConnection()->api_key )
 			 ->setRequestDataItem( 'user', $this->getUserKey() );
 		return parent::prepFinalRequestData();
 	}
