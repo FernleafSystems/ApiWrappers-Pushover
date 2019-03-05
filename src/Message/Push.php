@@ -2,20 +2,19 @@
 
 namespace FernleafSystems\ApiWrappers\Pushover\Message;
 
-use FernleafSystems\ApiWrappers\Pushover\Api;
+use FernleafSystems\ApiWrappers\Pushover;
 
 /**
  * Class Push
  * @package FernleafSystems\ApiWrappers\Pushover\Message
  */
-class Push extends Api {
+class Push extends Pushover\Api {
 
 	/**
 	 * @return bool
 	 */
 	public function push() {
-		return $this->send()
-					->isLastRequestSuccess();
+		return $this->req()->isLastRequestSuccess();
 	}
 
 	/**

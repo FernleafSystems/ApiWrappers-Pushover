@@ -14,8 +14,7 @@ class Verify extends Api {
 	 * @return bool
 	 */
 	public function verify() {
-		return $this->send()
-					->isLastRequestSuccess();
+		return $this->req()->isLastRequestSuccess();
 	}
 
 	/**
