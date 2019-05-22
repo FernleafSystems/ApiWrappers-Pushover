@@ -25,12 +25,12 @@ With all API requests, the first thing to do is create a new API Connection.
 	use FernleafSystems\ApiWrappers\Pushover;
 	
 	$oConnection = ( new Pushover\Connection() )
-    		->setApiKey( 'your api key' );
-    		
+			->setApiKey( 'your api key' );
+			
 	$bSuccess = ( new Pushover\User\Verify() )
-    	->setConnection( $oConn )
+		->setConnection( $oConn )
 		->setUserGroupKey( 'user or group key' )
-    	->verify();
+		->verify();
 ```
 
 ### 2) User / Group Verification with changed Key
@@ -45,12 +45,12 @@ token and it will look like this:
 	use FernleafSystems\ApiWrappers\Pushover;
 
 	$bSuccess = ( new Pushover\Message\Push() )
-    	->setConnection( $oConn )
+		->setConnection( $oConn )
 		->setUserGroupKey( 'user or group key' )
-    	->setTitle( 'My lovely title' )
-    	->setMessage( 'An important message' )
-    	->setIsHtml( false )
-    	->push();	
+		->setTitle( 'My lovely title' )
+		->setMessage( 'An important message' )
+		->setIsHtml( false )
+		->push();	
 ```
 
 Sending a message is very simple. Give the title and the message and adjust any
@@ -60,9 +60,9 @@ other parameters of the Message according to the API.
 
 ```php
 	$bSuccess = ( new Pushover\Message\Push() )
-    	->setDevice( 'Device Key' )
-    	...
-    	->push();	
+		->setDevice( 'Device Key' )
+		...
+		->push();	
 ```
 
 All the current API classes let you specify an optional device. If this is omitted
