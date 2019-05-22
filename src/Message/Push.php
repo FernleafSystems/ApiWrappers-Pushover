@@ -18,11 +18,28 @@ class Push extends Pushover\Api {
 	}
 
 	/**
+	 * https://pushover.net/api#priority
+	 * @param string $sUrl - used in conjunction with Emergency (Priority 2)
+	 * @return $this
+	 */
+	public function setCallbackUrl( $sUrl ) {
+		return $this->setRequestDataItem( 'callback', $sUrl );
+	}
+
+	/**
 	 * @param string $sValue
 	 * @return $this
 	 */
 	public function setDevice( $sValue ) {
 		return $this->setRequestDataItem( 'device', $sValue );
+	}
+
+	/**
+	 * @param string $nSeconds
+	 * @return $this
+	 */
+	public function setExpire( $nSeconds ) {
+		return $this->setRequestDataItem( 'expire', $nSeconds );
 	}
 
 	/**
@@ -47,7 +64,15 @@ class Push extends Pushover\Api {
 	 * @return $this
 	 */
 	public function setPriority( $nPriority = 0 ) {
-		return $this->setRequestDataItem( 'priority', $nPriority );
+		return $this->setRequestDataItem( 'priority', min( 2, max( -2, (int)$nPriority ) ) );
+	}
+
+	/**
+	 * @param string $nSeconds - minimum 30s; used in conjunction with Priority 2.
+	 * @return $this
+	 */
+	public function setRetry( $nSeconds ) {
+		return $this->setRequestDataItem( 'retry', min( 30, $nSeconds ) );
 	}
 
 	/**
