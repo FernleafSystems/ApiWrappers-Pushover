@@ -18,6 +18,14 @@ class Push extends Pushover\Api {
 	}
 
 	/**
+	 * @param string $sValue
+	 * @return $this
+	 */
+	public function setDevice( $sValue ) {
+		return $this->setRequestDataItem( 'device', $sValue );
+	}
+
+	/**
 	 * @param bool $bIsHtml
 	 * @return $this
 	 */
@@ -63,6 +71,14 @@ class Push extends Pushover\Api {
 	 * @param string $sValue
 	 * @return $this
 	 */
+	public function setTitle( $sValue ) {
+		return $this->setRequestDataItem( 'title', $sValue );
+	}
+
+	/**
+	 * @param string $sValue
+	 * @return $this
+	 */
 	public function setUrl( $sValue ) {
 		return $this->setRequestDataItem( 'url', $sValue );
 	}
@@ -76,11 +92,24 @@ class Push extends Pushover\Api {
 	}
 
 	/**
-	 * @param string $sValue
+	 * @param string $sKey
 	 * @return $this
 	 */
-	public function setTitle( $sValue ) {
-		return $this->setRequestDataItem( 'title', $sValue );
+	public function setUserGroupKey( $sKey ) {
+		return $this->setRequestDataItem( 'user', $sKey );
+	}
+
+	/**
+	 * This is temporary stop-gap to make up for the previous poor design where a Connection could override the user key
+	 * @throws \Exception
+	 * @deprecated
+	 */
+	protected function preFlight() {
+		if ( strlen( $this->getRequestDataItem( 'user' ) ) == 0 ) {
+			/** @var Pushover\Connection $oConn */
+			$oConn = $this->getConnection();
+			$this->setRequestDataItem( 'user', $oConn->user_key );
+		}
 	}
 
 	/**

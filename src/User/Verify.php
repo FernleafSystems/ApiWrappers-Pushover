@@ -18,6 +18,22 @@ class Verify extends Api {
 	}
 
 	/**
+	 * @param string $sValue
+	 * @return $this
+	 */
+	public function setDevice( $sValue ) {
+		return $this->setRequestDataItem( 'device', $sValue );
+	}
+
+	/**
+	 * @param string $sKey
+	 * @return $this
+	 */
+	public function setUserGroupKey( $sKey ) {
+		return $this->setRequestDataItem( 'user', $sKey );
+	}
+
+	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
