@@ -13,8 +13,8 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	const API_VERSION = 1;
 
 	/**
-	 * @deprecated
 	 * @return string
+	 * @deprecated
 	 */
 	public function getUserKey() {
 		return $this->getStringParam( 'user_key' );
@@ -23,6 +23,7 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	/**
 	 * @param string $sKey
 	 * @return $this
+	 * @deprecated
 	 */
 	public function setUserKey( $sKey ) {
 		$this->user_key = $sKey;
