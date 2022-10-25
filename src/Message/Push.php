@@ -4,124 +4,117 @@ namespace FernleafSystems\ApiWrappers\Pushover\Message;
 
 use FernleafSystems\ApiWrappers\Pushover;
 
-/**
- * Class Push
- * @package FernleafSystems\ApiWrappers\Pushover\Message
- */
 class Push extends Pushover\Api {
 
-	/**
-	 * @return bool
-	 */
-	public function push() {
+	public function push() :bool {
 		return $this->req()->isLastRequestSuccess();
 	}
 
 	/**
 	 * https://pushover.net/api#priority
-	 * @param string $sUrl - used in conjunction with Emergency (Priority 2)
+	 * @param string $url - used in conjunction with Emergency (Priority 2)
 	 * @return $this
 	 */
-	public function setCallbackUrl( $sUrl ) {
-		return $this->setRequestDataItem( 'callback', $sUrl );
+	public function setCallbackUrl( $url ) {
+		return $this->setRequestDataItem( 'callback', $url );
 	}
 
 	/**
-	 * @param string $sValue
+	 * @param string $device
 	 * @return $this
 	 */
-	public function setDevice( $sValue ) {
-		return $this->setRequestDataItem( 'device', $sValue );
+	public function setDevice( $device ) {
+		return $this->setRequestDataItem( 'device', $device );
 	}
 
 	/**
-	 * @param string $nSeconds
+	 * @param string $seconds
 	 * @return $this
 	 */
-	public function setExpire( $nSeconds ) {
-		return $this->setRequestDataItem( 'expire', $nSeconds );
+	public function setExpire( $seconds ) {
+		return $this->setRequestDataItem( 'expire', $seconds );
 	}
 
 	/**
-	 * @param bool $bIsHtml
+	 * @param bool $isHtml
 	 * @return $this
 	 */
-	public function setIsHtml( $bIsHtml = false ) {
-		return $bIsHtml ? $this->setRequestDataItem( 'html', 1 ) : $this->removeRequestDataItem( 'html' );
+	public function setIsHtml( $isHtml = false ) {
+		return $isHtml ? $this->setRequestDataItem( 'html', 1 ) : $this->removeRequestDataItem( 'html' );
 	}
 
 	/**
-	 * @param string $sValue
+	 * @param string $msg
 	 * @return $this
 	 */
-	public function setMessage( $sValue ) {
-		return $this->setRequestDataItem( 'message', $sValue );
+	public function setMessage( $msg ) {
+		return $this->setRequestDataItem( 'message', $msg );
 	}
 
 	/**
 	 * https://pushover.net/api#priority
-	 * @param int $nPriority -2 ~ +2
+	 * @param int $priority -2 ~ +2
 	 * @return $this
 	 */
-	public function setPriority( $nPriority = 0 ) {
-		return $this->setRequestDataItem( 'priority', min( 2, max( -2, (int)$nPriority ) ) );
+	public function setPriority( $priority = 0 ) {
+		return $this->setRequestDataItem( 'priority', min( 2, max( -2, (int)$priority ) ) );
 	}
 
 	/**
-	 * @param string $nSeconds - minimum 30s; used in conjunction with Priority 2.
+	 * @param string $seconds - minimum 30s; used in conjunction with Priority 2.
 	 * @return $this
 	 */
-	public function setRetry( $nSeconds ) {
-		return $this->setRequestDataItem( 'retry', min( 30, $nSeconds ) );
+	public function setRetry( $seconds ) {
+		return $this->setRequestDataItem( 'retry', min( 30, $seconds ) );
 	}
 
 	/**
 	 * Possible values: https://pushover.net/api#sounds
-	 * @param string $sValue
+	 * @param string $sound
 	 * @return $this
 	 */
-	public function setSound( $sValue ) {
-		return $this->setRequestDataItem( 'sound', $sValue );
+	public function setSound( $sound ) {
+		return $this->setRequestDataItem( 'sound', $sound );
 	}
 
 	/**
-	 * @param int $nTimestamp
+	 * @param int $ts
 	 * @return $this
 	 */
-	public function setTime( $nTimestamp ) {
-		return $this->setRequestDataItem( 'timestamp', $nTimestamp );
+	public function setTime( $ts ) {
+		return $this->setRequestDataItem( 'timestamp', $ts );
 	}
 
 	/**
-	 * @param string $sValue
+	 * @param string $title
 	 * @return $this
 	 */
-	public function setTitle( $sValue ) {
-		return $this->setRequestDataItem( 'title', $sValue );
+	public function setTitle( $title ) {
+		return $this->setRequestDataItem( 'title', $title );
 	}
 
 	/**
-	 * @param string $sValue
+	 * @param string $url
 	 * @return $this
 	 */
-	public function setUrl( $sValue ) {
-		return $this->setRequestDataItem( 'url', $sValue );
+	public function setUrl( $url ) {
+		return $this->setRequestDataItem( 'url', $url );
 	}
 
 	/**
-	 * @param string $sValue
+	 * @param string $title
 	 * @return $this
 	 */
-	public function setUrlTitle( $sValue ) {
-		return $this->setRequestDataItem( 'url_title', $sValue );
+	public function setUrlTitle( $title ) {
+		return $this->setRequestDataItem( 'url_title', $title );
 	}
 
 	/**
-	 * @param string $sKey
+	 * @param string $key
 	 * @return $this
 	 */
-	public function setUserGroupKey( $sKey ) {
-		return $this->setRequestDataItem( 'user', $sKey );
+	public function setUserGroupKey( $key ) {
+		return $this->setRequestDataItem( 'user', $key );
 	}
 
 	/**
@@ -137,10 +130,7 @@ class Push extends Pushover\Api {
 		}
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return 'messages.json';
 	}
 }
