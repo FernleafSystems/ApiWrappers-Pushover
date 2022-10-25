@@ -3,8 +3,6 @@
 namespace FernleafSystems\ApiWrappers\Pushover;
 
 /**
- * Class Connection
- * @package FernleafSystems\ApiWrappers\Freeagent
  * @property string $user_key
  */
 class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
@@ -17,16 +15,16 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	 * @deprecated
 	 */
 	public function getUserKey() {
-		return $this->getStringParam( 'user_key' );
+		return $this->user_key;
 	}
 
 	/**
-	 * @param string $sKey
+	 * @param string $key
 	 * @return $this
 	 * @deprecated
 	 */
-	public function setUserKey( $sKey ) {
-		$this->user_key = $sKey;
+	public function setUserKey( $key ) {
+		$this->user_key = $key;
 		return $this;
 	}
 }

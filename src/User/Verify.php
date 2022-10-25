@@ -4,39 +4,32 @@ namespace FernleafSystems\ApiWrappers\Pushover\User;
 
 use FernleafSystems\ApiWrappers\Pushover\Api;
 
-/**
- * Class Verify
- * @package FernleafSystems\ApiWrappers\Pushover\User
- */
 class Verify extends Api {
 
-	/**
-	 * @return bool
-	 */
-	public function verify() {
+	public function verify() :bool {
 		return $this->req()->isLastRequestSuccess();
 	}
 
 	/**
-	 * @param string $sValue
+	 * @param string $device
 	 * @return $this
 	 */
-	public function setDevice( $sValue ) {
-		return $this->setRequestDataItem( 'device', $sValue );
+	public function setDevice( $device ) {
+		return $this->setRequestDataItem( 'device', $device );
 	}
 
 	/**
-	 * @param string $sKey
+	 * @param string $key
 	 * @return $this
 	 */
-	public function setUserGroupKey( $sKey ) {
-		return $this->setRequestDataItem( 'user', $sKey );
+	public function setUserGroupKey( $key ) {
+		return $this->setRequestDataItem( 'user', $key );
 	}
 
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return 'users/validate.json';
 	}
 }
